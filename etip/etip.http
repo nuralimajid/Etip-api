@@ -1,0 +1,6 @@
+@etip_HostAddress = http://localhost:5090
+
+GET {{etip_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

@@ -1,0 +1,12 @@
+{
+  "Version": 1,
+  "Hash": "MGd9xJjd4loyyZXHw0ow6xLyLH5NMB41hEAK0Mrnu6c=",
+  "Source": "etip",
+  "BasePath": "_content/etip",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": [],
+  "Endpoints": []
+}
