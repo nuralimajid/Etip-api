@@ -11,6 +11,6 @@ public class ParkingSession
     public int InTapOperatorId { get; set; }
     public int OutTapOperatorId { get; set; }
     
-    public Operator InTapOperator { get; set; }
-    public Operator OutTapOperator { get; set; }
+    public Employee InTapEmployee { get; set; }
+    public Employee OutTapEmployee { get; set; }
 }

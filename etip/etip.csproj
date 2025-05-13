@@ -19,7 +19,8 @@
 
     <ItemGroup>
       <Folder Include="DTOs\" />
-      <Folder Include="Services\" />
+      <Folder Include="Pattern\Interface\" />
+      <Folder Include="Pattern\Services\" />
     </ItemGroup>
 
 </Project>

@@ -7,14 +7,14 @@ public static class Seeder
 {
     public static void Seed(AppDbContext context)
     {
-        if (!context.Operators.Any())
+        if (!context.Roles.Any())
         {
-            var Operators = new List<Operator>
+            var Role = new List<Role>
             {
-                new Operator { Name = "Budi", Code = "ET001", Gate = "Masuk" },
-                new Operator { Name = "Sari", Code = "ET002", Gate = "Keluar" },
+                new Role { Name = "admin"},
+                new Role { Name = "petugas" },
             };
-            context.Operators.AddRange(Operators);
+            context.Roles.AddRange(Role);
         }
 
         if (!context.ParkingRates.Any())

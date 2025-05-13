@@ -1,6 +1,6 @@
 namespace etip.Models;
 
-public class ParkingRate
+public class ParkingRate :BaseModel
 {
     public int Id { get; set; }
     public decimal FirstHourRate { get; set; }

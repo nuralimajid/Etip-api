@@ -22,7 +22,7 @@ namespace etip.Migrations
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
 
-            modelBuilder.Entity("etip.Models.Operator", b =>
+            modelBuilder.Entity("etip.Models.Employee", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -113,24 +113,24 @@ namespace etip.Migrations
 
             modelBuilder.Entity("etip.Models.ParkingSession", b =>
                 {
-                    b.HasOne("etip.Models.Operator", "InTapOperator")
+                    b.HasOne("etip.Models.Employee", "InTapEmployee")
                         .WithMany("TapInSessions")
                         .HasForeignKey("InTapOperatorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.HasOne("etip.Models.Operator", "OutTapOperator")
+                    b.HasOne("etip.Models.Employee", "OutTapEmployee")
                         .WithMany("TapOutSessions")
                         .HasForeignKey("OutTapOperatorId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
-                    b.Navigation("InTapOperator");
+                    b.Navigation("InTapEmployee");
 
-                    b.Navigation("OutTapOperator");
+                    b.Navigation("OutTapEmployee");
                 });
 
-            modelBuilder.Entity("etip.Models.Operator", b =>
+            modelBuilder.Entity("etip.Models.Employee", b =>
                 {
                     b.Navigation("TapInSessions");
 

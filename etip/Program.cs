@@ -13,7 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 //Add JWT Configuration
-builder.Services.AddJwtAuthentication(builder.Configuration);
+//builder.Pattern.AddJwtAuthentication(builder.Configuration);
 
 //Add Cors Policy
 builder.Services.AddCors(opt =>
