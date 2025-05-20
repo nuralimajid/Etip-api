@@ -1,12 +1,12 @@
-namespace etip.Models;
+namespace etip.DTOs;
 
-public class ParkingSession : BaseModel
+public class ParkingSessionDto : IMapFrom<ParkingSession>
 {
     public int Id { get; set; }
-    public int? VehicleId { get; set; }
-    public int? GateInId { get; set; }
-    public int? GateOutId { get; set; }
-    public DateTime? CheckInTime { get; set; }
+    public int VehicleId { get; set; }
+    public int GateInId { get; set; }
+    public int GateOutId { get; set; }
+    public DateTime CheckInTime { get; set; }
     public DateTime? CheckOutTime { get; set; }
     public Guid? EmployeeInId { get; set; }
     public Guid? EmployeeOutId { get; set; }

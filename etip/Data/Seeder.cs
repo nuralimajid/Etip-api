@@ -24,7 +24,7 @@ public static class Seeder
                 FirstHourRate = 3000,
                 NextHourRate = 2000,
                 DailyMaxRate = 15000,
-                OverDuePinaltyPerDay = 10000,
+                OverDuePenaltyPerDay = 10000,
                 EffectiveFrom = DateTime.UtcNow
             };
             context.ParkingRates.Add(rate);

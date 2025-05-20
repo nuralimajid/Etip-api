@@ -7,6 +7,6 @@ public class Gate
     public string? Location { get; set; }
     public bool? Type { get; set; }
     public bool? Status { get; set; }
-    public bool? Has_Attendence { get; set; }
-    public bool? In_or_Out { get; set; }
+    public bool? HasAttendance { get; set; }
+    public bool? InOrOut { get; set; }
 }

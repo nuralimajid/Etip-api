@@ -16,14 +16,14 @@ public class AppDbContext:DbContext
     {
         modelBuilder.Entity<Employee>()
             .HasMany(o=>o.TapInSessions)
-            .WithOne(s=>s.InTapEmployee)
-            .HasForeignKey(h=>h.InTapOperatorId)
+            .WithOne(s=>s.EmployeeIn)
+            .HasForeignKey(h=>h.EmployeeInId)
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<Employee>()
             .HasMany(o=>o.TapOutSessions)
-            .WithOne(s=>s.OutTapEmployee)
-            .HasForeignKey(h=>h.OutTapOperatorId)
+            .WithOne(s=>s.EmployeeOut)
+            .HasForeignKey(h=>h.EmployeeOutId)
             .OnDelete(DeleteBehavior.Restrict);
     }
     

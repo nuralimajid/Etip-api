@@ -1,6 +1,6 @@
-namespace etip.Models;
+namespace etip.DTOs;
 
-public class ParkingRate :BaseModel
+public class ParkingRateDto : IMapFrom<ParkingRate>
 {
     public int Id { get; set; }
     public decimal FirstHourRate { get; set; }
