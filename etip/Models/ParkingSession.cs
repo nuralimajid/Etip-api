@@ -21,4 +21,7 @@ public class ParkingSession : BaseModel
     public virtual Vehicle Vehicle { get; set; }
     public virtual Gate GateIn { get; set; }
     public virtual Gate GateOut { get; set; }
+    public virtual PaymentMethod PaymentMethod { get; set; }
+    
+   
 }

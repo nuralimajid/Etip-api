@@ -15,10 +15,11 @@ public class ParkingSessionDto : IMapFrom<ParkingSession>
     public bool? Penalty { get; set; } = false;
     public int? PaymentMethodId { get; set; }
 
-    public virtual Employee EmployeeIn { get; set; }
-    public virtual Employee EmployeeOut { get; set; }
-    public virtual ParkingRate ParkingRate { get; set; }
-    public virtual Vehicle Vehicle { get; set; }
-    public virtual Gate GateIn { get; set; }
-    public virtual Gate GateOut { get; set; }
+    public virtual EmployeeDto EmployeeIn { get; set; }
+    public virtual EmployeeDto EmployeeOut { get; set; }
+    public virtual ParkingRateDto ParkingRate { get; set; }
+    public virtual VehiclesDto Vehicle { get; set; }
+    public virtual GateDto GateIn { get; set; }
+    public virtual GateDto GateOut { get; set; }
+    public virtual PaymentMethodDto PaymentMethod { get; set; }
 }

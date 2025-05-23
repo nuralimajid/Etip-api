@@ -9,7 +9,6 @@ public class Employee : BaseModel
     public string? Name { get; set; }
     public string? RegistrationNumber { get; set; }
     public int? PositionId { get; set; }
-    public bool? IsUser { get; set; }
     public bool? Status { get; set; }
     
     public Position Position { get; set; }

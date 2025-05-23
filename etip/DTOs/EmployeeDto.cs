@@ -16,7 +16,6 @@ public class EmployeeDto : IMapFrom<Employee>
     public string RegistrationNumber { get; set; } = String.Empty;
 
     public int? PositionId { get; set; }
-    public bool IsUser { get; set; } = false;
     public bool? Status { get; set; } = true;
 
     public PositionDto? Position { get; set; }

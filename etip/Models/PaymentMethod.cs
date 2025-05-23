@@ -7,4 +7,6 @@ public class PaymentMethod : BaseModel
     public string? Type { get; set; }
     public bool IsActive { get; set; }
     
+    public ICollection<ParkingSession> ParkingSessions { get; set; }
+    public ICollection<GatePaymentOption> GatePaymentOptions { get; set; }
 }

@@ -9,4 +9,7 @@ public class Gate
     public bool? Status { get; set; }
     public bool? HasAttendance { get; set; }
     public bool? InOrOut { get; set; }
+    
+    public ICollection<ParkingSession> ParkingSessions { get; set; }
+    public ICollection<GatePaymentOption> GatePaymentOptions { get; set; }
 }

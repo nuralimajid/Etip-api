@@ -8,4 +8,6 @@ public class ParkingRate :BaseModel
     public decimal DailyMaxRate { get; set; }
     public decimal OverDuePenaltyPerDay { get; set; }
     public DateTime EffectiveFrom { get; set; }
+    
+    public ICollection<ParkingSession> ParkingSessions { get; set; }
 }
