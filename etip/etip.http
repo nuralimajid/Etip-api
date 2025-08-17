@@ -1,6 +1,64 @@
 @etip_HostAddress = http://localhost:5090
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImFkbWluIiwibmJmIjoxNzI3NzYwNDYxLCJleHAiOjE3MjgzNjUyNjEsImlhdCI6MTcyNzc2MDQ2MSwiaXNzIjoiZXRpcC5hcGkiLCJhdWQiOiJldGlwLmNsaWVudCJ9.fakeToken
+### Login to get a token
+POST {{etip_HostAddress}}/api/auth/login
+Content-Type: application/json
 
-GET {{etip_HostAddress}}/weatherforecast/
+{
+  "username": "admin",
+  "password": "password"
+}
+
+### Get all gates
+GET {{etip_HostAddress}}/api/gates
 Accept: application/json
+Authorization: Bearer {{authToken}}
 
-###
+### Create a new gate
+POST {{etip_HostAddress}}/api/gates
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "name": "Gate 1",
+  "location": "North Entrance",
+  "type": true,
+  "status": true,
+  "hasAttendance": true,
+  "inOrOut": true
+}
+
+### Get all employees
+GET {{etip_HostAddress}}/api/employees
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+### Get all vehicles
+GET {{etip_HostAddress}}/api/vehicles
+Accept: application/json
+Authorization: Bearer {{authToken}}
+
+### Check-in a vehicle
+POST {{etip_HostAddress}}/api/parkingsessions/checkin
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "vehicleId": 1,
+  "gateInId": 1,
+  "employeeInId": "00000000-0000-0000-0000-000000000000"
+}
+
+### Check-out a vehicle
+PUT {{etip_HostAddress}}/api/parkingsessions/checkout/1
+Content-Type: application/json
+Authorization: Bearer {{authToken}}
+
+{
+  "id": 1,
+  "vehicleId": 1,
+  "gateInId": 1,
+  "gateOutId": 2,
+  "employeeOutId": "00000000-0000-0000-0000-000000000000",
+  "paymentMethodId": 1
+}

@@ -1,3 +1,6 @@
+using System;
+using System.Collections.Generic;
+
 namespace etip.Models;
 
 public class ParkingRate :BaseModel
@@ -9,5 +12,5 @@ public class ParkingRate :BaseModel
     public decimal OverDuePenaltyPerDay { get; set; }
     public DateTime EffectiveFrom { get; set; }
     
-    public ICollection<ParkingSession> ParkingSessions { get; set; }
+    public ICollection<ParkingSession> ParkingSessions { get; set; } = new List<ParkingSession>();
 }

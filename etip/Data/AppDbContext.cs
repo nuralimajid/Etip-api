@@ -38,89 +38,64 @@ public class AppDbContext : DbContext
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<Employee>()
-            .HasMany(o => o.TapInSessions)
-            .WithOne(s => s.EmployeeIn)
-            .HasForeignKey(h => h.EmployeeInId)
-            .OnDelete(DeleteBehavior.Restrict);
+        modelBuilder.Entity<UserRole>()
+            .HasKey(ur => new { ur.UserId, ur.RoleId });
+
+        modelBuilder.Entity<UserRole>()
+            .HasOne(ur => ur.User)
+            .WithMany(u => u.UserRoles)
+            .HasForeignKey(ur => ur.UserId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<UserRole>()
+            .HasOne(ur => ur.Role)
+            .WithMany(r => r.UserRoles)
+            .HasForeignKey(ur => ur.RoleId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<GatePaymentOption>()
+            .HasKey(gpo => new { gpo.GateId, gpo.PaymentMethodId });
+
+        modelBuilder.Entity<GatePaymentOption>()
+            .HasOne(gpo => gpo.Gate)
+            .WithMany(g => g.GatePaymentOptions)
+            .HasForeignKey(gpo => gpo.GateId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<GatePaymentOption>()
+            .HasOne(gpo => gpo.PaymentMethod)
+            .WithMany(p => p.GatePaymentOptions)
+            .HasForeignKey(gpo => gpo.PaymentMethodId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Employee>()
-            .HasMany(o => o.TapOutSessions)
-            .WithOne(s => s.EmployeeOut)
-            .HasForeignKey(h => h.EmployeeOutId)
+            .HasMany(e => e.TapInSessions)
+            .WithOne(ps => ps.EmployeeIn)
+            .HasForeignKey(ps => ps.EmployeeInId)
+            .OnDelete(DeleteBehavior.SetNull);
+
+        modelBuilder.Entity<Employee>()
+            .HasMany(e => e.TapOutSessions)
+            .WithOne(ps => ps.EmployeeOut)
+            .HasForeignKey(ps => ps.EmployeeOutId)
+            .OnDelete(DeleteBehavior.SetNull);
+        
+        modelBuilder.Entity<ParkingSession>()
+            .HasOne(ps => ps.GateIn)
+            .WithMany(g => g.ParkingSessionsIn)
+            .HasForeignKey(ps => ps.GateInId)
             .OnDelete(DeleteBehavior.Restrict);
         
         modelBuilder.Entity<ParkingSession>()
-            .HasOne(o => o.GateIn)
-            .WithMany(s => s.ParkingSessions)
-            .HasForeignKey(h => h.GateInId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<ParkingSession>()
-            .HasOne(o => o.GateOut)
-            .WithMany(s => s.ParkingSessions)
-            .HasForeignKey(h => h.GateOutId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<ParkingSession>()
-            .HasOne(o => o.Vehicle)
-            .WithMany(s => s.ParkingSessions)
-            .HasForeignKey(h => h.VehicleId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<ParkingSession>()
-            .HasOne(o => o.ParkingRate)
-            .WithMany(s => s.ParkingSessions)
-            .HasForeignKey(h => h.ParkingRateId)
-            .OnDelete(DeleteBehavior.Restrict);
-        modelBuilder.Entity<ParkingSession>()
-            .HasOne(o => o.PaymentMethod)
-            .WithMany(s => s.ParkingSessions)
-            .HasForeignKey(h => h.PaymentMethodId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<GatePaymentOption>()
-            .HasOne(o => o.Gate)
-            .WithMany(s => s.GatePaymentOptions)
-            .HasForeignKey(h => h.GateId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<GatePaymentOption>()
-            .HasOne(o => o.PaymentMethod)
-            .WithMany(s => s.GatePaymentOptions)
-            .HasForeignKey(h => h.PaymentMethodId)
-            .OnDelete(DeleteBehavior.Restrict);
-        modelBuilder.Entity<PaymentMethod>()
-            .HasMany(o => o.GatePaymentOptions)
-            .WithOne(s => s.PaymentMethod)
-            .HasForeignKey(h => h.PaymentMethodId)
-            .OnDelete(DeleteBehavior.Restrict);
-        modelBuilder.Entity<PaymentMethod>()
-            .HasMany(o => o.ParkingSessions)
-            .WithOne(s => s.PaymentMethod)
-            .HasForeignKey(h => h.PaymentMethodId)
-            .OnDelete(DeleteBehavior.Restrict);
-        modelBuilder.Entity<Vehicle>()
-            .HasMany(o => o.ParkingSessions)
-            .WithOne(s => s.Vehicle)
-            .HasForeignKey(h => h.VehicleId)
-            .OnDelete(DeleteBehavior.Restrict);
+            .HasOne(ps => ps.GateOut)
+            .WithMany(g => g.ParkingSessionsOut)
+            .HasForeignKey(ps => ps.GateOutId)
+            .OnDelete(DeleteBehavior.SetNull);
+
         modelBuilder.Entity<Position>()
-            .HasMany(o => o.Employees)
-            .WithOne(s => s.Position)
-            .HasForeignKey(h => h.PositionId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
-        modelBuilder.Entity<User>()
-            .HasMany(o => o.UserRoles)
-            .WithOne(s => s.User)
-            .HasForeignKey(h => h.UserId)
-            .OnDelete(DeleteBehavior.Restrict);
-        modelBuilder.Entity<Role>()
-            .HasMany(o => o.UserRoles)
-            .WithOne(s => s.Role)
-            .HasForeignKey(h => h.RoleId)
-            .OnDelete(DeleteBehavior.Restrict);
-        
+            .HasMany(p => p.Employees)
+            .WithOne(e => e.Position)
+            .HasForeignKey(e => e.PositionId)
+            .OnDelete(DeleteBehavior.SetNull);
     }
 }
